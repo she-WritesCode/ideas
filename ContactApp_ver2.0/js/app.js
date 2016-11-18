@@ -1,35 +1,36 @@
 var app = angular.module('contactApp', ['ngStorage']);
 				app.controller('ContactsController',['$scope','$localStorage', function ($scope,$localStorage) {
 					
-                    if($localStorage.contact == null)
-                        $scope.listContacts = [
-                            {id: 001, name: 'Busola Okeowo', email: 'busolaokemoney@gmail.com', phone: 8026910113},
-                            {id: 002, name: 'Obalolu Okeowo', email: 'obaokemoney@gmail.com', phone: 8026910113},
-                            {id: 003, name: 'Pelumi Okeowo', email: 'obapelucreations@gmail.com', phone: 8026910113},
-                        ];
+					if($localStorage.contact == null)
+					$scope.listContacts = [
+      			  	    {id: 001, name: 'Busola Okeowo', email: 'busolaokemoney@gmail.com', phone: 8026910113},
+        				{id: 002, name: 'Obalolu Okeowo', email: 'obaokemoney@gmail.com', phone: 9090661996},
+       			 	    {id: 003, name: 'Pelumi Okeowo', email: 'obapelucreations@yahoo.com', phone: 9090661997},
+						{id: 004, name: 'Adedapo Okeowo', email: 'dapotutu@yahoo.com.au', phone: 8024242526}
+                    ];
                     else
-					   $scope.listContacts = $localStorage.contact;
-                    
+					$scope.listContacts = $localStorage.contact;
+					
 					$scope.add = function() {
-                        if($scope.name === undefined){
-                            alert('Please Input Contact Name')
-                        }
-                        else if ($scope.email === undefined){
-                            alert('Please Input Correct Email')
-                        }
-                        else if ($scope.phone === undefined){
-                            alert('Please Input Phone Number')
-                        }
-                        else {
-                            $scope.listContacts.push(
-                                {id: $scope.id, name: $scope.name, email: $scope.email, phone: $scope.phone}
-                            );
-                            $scope.id = '';
-                            $scope.name = '';
-                            $scope.email = '';
-                            $scope.phone = '';
+                            if($scope.name === undefined){
+                                alert('Please Input Contact Name')
+                            }
+                            else if ($scope.phone === undefined){
+                                alert('Please Input Phone Number')
+                            }
+                            else if ($scope.email === undefined){
+                                alert('Please Input Correct Email')
+                            }
+                            else {
+                                $scope.listContacts.push(
+									{id: $scope.id, name: $scope.name, email: $scope.email, phone: $scope.phone}
+                                );
+                                $scope.id = '';
+                                $scope.name = '';
+                                $scope.email = '';
+                                $scope.phone = '';
+                            }
                             $localStorage.contact = $scope.listContacts;
-                        }
                     };
 					
 					$scope.edit = function(){
@@ -54,10 +55,9 @@ var app = angular.module('contactApp', ['ngStorage']);
 								var index = getSelectedIndex(id);
 								$scope.listContacts.splice(index, 1);
 							};
-                         $scope.listContacts = $localStorage.contact;
+						$localStorage.contact = $scope.listContacts;
 					};
 					
-                    
 					function getSelectedIndex(id) {
 						for(var i=0; i<$scope.listContacts.length; i++)
 							if($scope.listContacts[i].id==id)
