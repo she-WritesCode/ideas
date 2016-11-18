@@ -1,0 +1,59 @@
+<!doctype html>
+<html ng-app="contactApp">
+    <head lang="en">
+        <title>My Contact App</title>
+    
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="application-name" content="My Contacts">
+        <meta name="author" content="Okeowo Busola Feranmi">
+        <meta name="generator" content="Adobe Brackets">
+    
+
+        <link rel="stylesheet" href="css/bootstrap.min.css"> 
+
+        <script type="text/javascript" src="js/angular.min.js" ></script>
+        <script type="text/javascript" src="js/ngStorage.min.js" ></script>
+        <script type="text/javascript" src="js/app.js"></script>
+
+        <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+			
+    </head>
+    <body ng-controller="ContactsController" class="container">
+	   <header class="jumbotron">
+           <h1>My Contacts</h1>
+           <span class="page-head">You have {{listContacts.length}} contacts now!</span>
+	   </header>
+			<section class="jumbotron">
+				<table class=table>
+					<tr cell-padding="2" cell-spacing="2">
+						<th>Name</th>
+						<th>Phone</th>
+						<th>Email</th>
+						<th>Options</th>
+					</tr>
+					<tr ng-repeat="contact in listContacts | orderBy: 'name'">
+						<td>{{contact.name}}</td>
+						<td>{{contact.phone}}</td>
+						<td>{{contact.email}}</td>
+						<td>
+							<a href="" class="btn btn-primary btn-xs" ng-click="selectEdit(contact.id)">Edit</a> |
+							<a href="" class="btn btn-danger btn-xs" ng-click="del(contact.id)">Delete</a>
+						</td>
+					</tr>
+                    <tr>
+						<td><input type="text" name="name" ng-model="name" required /></td>
+						<td><input type="number" name="id" ng-model="phone" required /></td>
+						<td><input type="email" name="email" ng-model="email" /></td>
+						<td>
+							<input type="button" class="btn btn-success btn-xs" value="Add" ng-click="add()" />
+							<input type="button" class="btn btn-primary btn-xs" value="Save" ng-click="edit()" />
+						</td>
+					</tr>
+                </table>
+			</section>
+       <a href="https://github.com/jesuFeranmi/myfirstproject.git">click</a>
+    </body>
+</html>
